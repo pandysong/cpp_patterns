@@ -1,0 +1,32 @@
+cmake_minimum_required (VERSION 2.6)
+project (cpp_tips)
+include_directories(
+    GSL/include
+    )
+add_executable(test_barton_nackman test_barton_nackman.cpp)
+add_executable(test_dynamic_cast test_dynamic_cast.cpp) #dynamic casting will do the type check on run time
+add_executable(pimpl_widget pimpl_widget.cpp pimpl_test.cpp) #pimpl hide the implementation details from header file
+add_executable(test_not_null test_not_null.cpp)
+add_executable(test_rvalue_ref test_rvalue_ref.cpp)
+add_executable(test_rvalue_ref2 test_rvalue_ref2.cpp)
+add_executable(test_move test_move.cpp)
+add_executable(test_swap test_swap.cpp)
+add_executable(test_assign_operator test_assign_operator.cpp)
+add_executable(test_pure_functions test_pure_functions.cpp)
+add_executable(test_unique_ptr test_unique_ptr.cpp)
+add_executable(test_vector_swap test_vector_swap.cpp)
+add_executable(test_forward test_forward.cpp)
+add_executable(test_rvalue_template test_rvalue_template.cpp)
+add_executable(test_initlizer_list test_initlizer_list.cpp)
+add_executable(test_parameter_pack test_parameter_pack.cpp)
+add_executable(test_struct_capture test_struct_capture.cpp)
+#set_source_files_properties(test_span.cpp PROPERTIES COMPILE_FLAGS -std=c++2a)
+#add_executable(test_span test_span.cpp)
+add_executable(test_lambda_capture test_lambda_capture.cpp)
+
+set_source_files_properties(test_fold_expression.cpp PROPERTIES COMPILE_FLAGS -std=c++17)
+add_executable(test_fold_expression test_fold_expression.cpp)
+add_executable(test_non_virtual_destructor test_non_virtual_destructor.cpp)
+add_executable(test_member_init test_member_init.cpp)
+add_executable(test_template_duck_typping test_template_duck_typping.cpp)
+add_executable(test_template_duck_typping2 test_template_duck_typping2.cpp)
