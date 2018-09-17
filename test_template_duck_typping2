@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+
+class foo
+{
+    public:
+        std::string as_string() const {
+            return "foo";
+        }
+};
+
+class baz
+{
+    public:
+        // look ma, no 'as_string'
+};
+
+template <typename T>
+class repr_type
+{
+    public:
+        repr_type(const T &o) : m_o(o) {}
+
+        std::string as_string() const { return call_as_string<T>(nullptr); }
+
+    private:
+        template <class C>
+            std::string call_as_string(decltype(&C::as_string)) const
+            {
+                return m_o.as_string();
+            }
+
+        template <class C>
+            std::string call_as_string(...) const
+            {
+                return "bar";
+                //return std::string::format("%p", &m_o);
+            }
+
+        const T &m_o;
+};
+
+    template <typename T>
+std::string as_string(const T &o)
+{
+    return repr_type<T>(o).as_string();
+}
+
+int main()
+{
+    foo f;
+    baz b;
+    std::cout << as_string(f) << std::endl;
+    std::cout << as_string(b) << std::endl;
+}
